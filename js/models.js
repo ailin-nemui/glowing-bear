@@ -7,12 +7,12 @@
 
 var models = angular.module('weechatModels', []);
 
-models.service('models', ['$rootScope', '$filter', function($rootScope, $filter) {
+models.service('models', ['$rootScope', '$filter', 'protocolModule', function($rootScope, $filter, protocolModule) {
     // WeeChat version
     this.version = null;
 
     var parseRichText = function(text) {
-        var textElements = weeChat.Protocol.rawText2Rich(text),
+        var textElements = protocolModule.mod.rawText2Rich(text),
             typeToClassPrefixFg = {
                 'option': 'cof-',
                 'weechat': 'cwf-',
