@@ -12,8 +12,8 @@ weechat.config(['$compileProvider', function ($compileProvider) {
     }
 }]);
 
-weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout', '$log', 'models', 'connection', 'notifications', 'utils', 'settings',
-    function ($rootScope, $scope, $store, $timeout, $log, models, connection, notifications, utils, settings) {
+weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout', '$log', 'protocolModule', 'models', 'connection', 'notifications', 'utils', 'settings',
+    function ($rootScope, $scope, $store, $timeout, $log, protocolModule, models, connection, notifications, utils, settings) {
 
     window.openBuffer = function(channel) {
         $scope.openBuffer(channel);
@@ -355,6 +355,7 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
     });
     $scope.connectbutton = 'Connect';
     $scope.connectbuttonicon = 'glyphicon-chevron-right';
+    $scope.protocolname = protocolModule.name;
 
     $scope.getBuffers = models.getBuffers.bind(models);
 

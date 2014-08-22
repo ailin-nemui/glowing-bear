@@ -4,13 +4,14 @@
 var weechat = angular.module('weechat');
 
 weechat.factory('connection',
-                ['$rootScope', '$log', 'handlers', 'models', 'ngWebsockets', function($rootScope,
+                ['$rootScope', '$log', 'handlers', 'protocolModule', 'models', 'ngWebsockets', function($rootScope,
          $log,
          handlers,
+         protocolModule,
          models,
          ngWebsockets) {
 
-    var protocol = new weeChat.Protocol();
+    var protocol = new protocolModule.mod();
 
     var connectionData = [];
     var reconnectTimer;
@@ -40,14 +41,14 @@ weechat.factory('connection',
                 // Until it does, We need to "assume" that formatInit
                 // will be received before formatInfo
                 ngWebsockets.send(
-                    weeChat.Protocol.formatInit({
+                    protocolModule.mod.formatInit({
                         password: passwd,
                         compression: noCompression ? 'off' : 'zlib'
                     })
                 );
 
                 return ngWebsockets.send(
-                    weeChat.Protocol.formatInfo({
+                    protocolModule.mod.formatInfo({
                         name: 'version'
                     })
                 );
@@ -55,7 +56,7 @@ weechat.factory('connection',
 
             var _requestHotlist = function() {
                 return ngWebsockets.send(
-                    weeChat.Protocol.formatHdata({
+                    protocolModule.mod.formatHdata({
                         path: "hotlist:gui_hotlist(*)",
                         keys: []
                     })
@@ -64,7 +65,7 @@ weechat.factory('connection',
 
             var _requestBufferInfos = function() {
                 return ngWebsockets.send(
-                    weeChat.Protocol.formatHdata({
+                    protocolModule.mod.formatHdata({
                         path: 'buffer:gui_buffers(*)',
                         keys: ['local_variables,notify,number,full_name,short_name,title,hidden,type']
                     })
@@ -73,7 +74,7 @@ weechat.factory('connection',
 
             var _requestSync = function() {
                 return ngWebsockets.send(
-                    weeChat.Protocol.formatSync({})
+                    protocolModule.mod.formatSync({})
                 );
             };
 
@@ -255,7 +256,7 @@ weechat.factory('connection',
     var disconnect = function() {
         $log.info('Disconnecting from relay');
         $rootScope.userdisconnect = true;
-        ngWebsockets.send(weeChat.Protocol.formatQuit());
+        ngWebsockets.send(protocolModule.mod.formatQuit());
         // In case the backend doesn't repond we will close from our end
         var closeTimer = setTimeout(function() {
             ngWebsockets.disconnect();
@@ -275,14 +276,14 @@ weechat.factory('connection',
      * @returns the angular promise
      */
     var sendMessage = function(message) {
-        ngWebsockets.send(weeChat.Protocol.formatInput({
+        ngWebsockets.send(protocolModule.mod.formatInput({
             buffer: models.getActiveBufferReference(),
             data: message
         }));
     };
 
     var sendCoreCommand = function(command) {
-        ngWebsockets.send(weeChat.Protocol.formatInput({
+        ngWebsockets.send(protocolModule.mod.formatInput({
             buffer: 'core.weechat',
             data: command
         }));
@@ -309,7 +310,7 @@ weechat.factory('connection',
             return;
         }
         ngWebsockets.send(
-            weeChat.Protocol.formatNicklist({
+            protocolModule.mod.formatNicklist({
                 buffer: "0x"+bufferId
             })
         ).then(function(nicklist) {
@@ -346,7 +347,7 @@ weechat.factory('connection',
         $rootScope.loadingLines = true;
         // Send hdata request to fetch lines for this particular buffer
         return ngWebsockets.send(
-            weeChat.Protocol.formatHdata({
+            protocolModule.mod.formatHdata({
                 // "0x" is important, otherwise it won't work
                 path: "buffer:0x" + buffer.id + "/own_lines/last_line(-" + numLines + ")/data",
                 keys: []
