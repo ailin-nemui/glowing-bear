@@ -3,7 +3,7 @@
 
 var weechat = angular.module('weechat', ['ngRoute', 'localStorage', 'weechatModels', 'plugins', 'IrcUtils', 'ngSanitize', 'ngWebsockets', 'ngTouch']);
 
-weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout', '$log', 'models', 'connection', 'notifications', 'utils', function ($rootScope, $scope, $store, $timeout, $log, models, connection, notifications, utils) {
+weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout', '$log', 'protocolModule', 'models', 'connection', 'notifications', 'utils', function ($rootScope, $scope, $store, $timeout, $log, protocolModule, models, connection, notifications, utils) {
 
 
     $scope.command = '';
@@ -280,6 +280,7 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
         $scope.connectbutton = 'Connect';
     });
     $scope.connectbutton = 'Connect';
+    $scope.protocolname = protocolModule.name;
 
     $scope.getBuffers = models.getBuffers.bind(models);
 
