@@ -2089,7 +2089,7 @@ input[type=text], input[type=password], #sendMessage, .badge, .btn-send {
 
 /* highlight messages */
 .highlight {
-    color: yellow;
+    /*color: yellow;*/
     font-weight: bold;
 }
 
