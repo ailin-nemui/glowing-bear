@@ -279,6 +279,11 @@ weechat.factory('handlers', ['$rootScope', '$log', 'models', 'plugins', 'notific
         models.addBuffer(buffer);
     };
 
+    var handleBufferActivate = function(message) {
+        var buffer = models.getTextBuffer(message.buffer);
+        models.setActiveBuffer(buffer.id);
+    };
+
     var handleBufferTitleChanged = function(message) {
         var obj = message.objects[0].content[0];
         var buffer = obj.pointers[0];
@@ -474,6 +479,7 @@ weechat.factory('handlers', ['$rootScope', '$log', 'models', 'plugins', 'notific
         _buffer_renamed: handleBufferRenamed,
         _buffer_hidden: handleBufferHidden,
         _buffer_unhidden: handleBufferUnhidden,
+        _buffer_activate: handleBufferActivate,
         _nicklist: handleNicklist,
         _nicklist_diff: handleNicklistDiff
     };
