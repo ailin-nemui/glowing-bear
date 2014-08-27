@@ -395,7 +395,10 @@ models.service('models', ['$rootScope', '$filter', function($rootScope, $filter)
             rtext += content[i].text;
         }
 
-       return {
+        var pointer = (message.pointers||{0:null})[0];
+
+        return {
+            id: pointer,
             strtime: strtime,
             prefix: prefix,
             content: content,
