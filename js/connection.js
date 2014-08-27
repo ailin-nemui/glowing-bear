@@ -346,16 +346,25 @@ weechat.factory('connection',
         // Indicator that we are loading lines, hides "load more lines" link
         $rootScope.loadingLines = true;
         // Send hdata request to fetch lines for this particular buffer
+        var oldRequestedLines = buffer.requestedLines;
         return ngWebsockets.send(
             protocolModule.mod.formatHdata({
                 // "0x" is important, otherwise it won't work
-                path: "buffer:0x" + buffer.id + "/own_lines/last_line(-" + numLines + ")/data",
+                path: "buffer:0x" + buffer.id + "/own_lines/last_line(-" + numLines +
+                    (protocolModule.mod.skipLines ? "," + oldRequestedLines : "") + ")/data",
                 keys: []
             })
         ).then(function(lineinfo) {
 //XXX move to handlers?
             // delete old lines and add new ones
-            var oldLength = buffer.lines.length;
+            var oldLines;
+            if (oldRequestedLines) {
+                oldLines = buffer.lines.slice(-oldRequestedLines);
+            }
+            if (!protocolModule.mod.skipLines || oldLines === undefined) {
+                oldLines = [];
+            }
+            var oldLength = oldLines.length;
             // whether we already had all unread lines
             var hadAllUnreadLines = buffer.lastSeen >= 0;
 
@@ -366,10 +375,16 @@ weechat.factory('connection',
             // already connected.
             buffer.requestedLines = 0;
             // Count number of lines recieved
-            var linesReceivedCount = lineinfo.objects[0].content.length;
+            var linesReceivedCount = lineinfo.objects[0].content.length + oldLines.length;
 
             // Parse the lines
             handlers.handleLineInfo(lineinfo, true);
+
+            oldLines.forEach(function(message) {
+                buffer.addLine(message);
+                buffer.lastSeen++;
+                buffer.requestedLines++;
+            });
 
             // Correct the read marker for the lines that were counted twice
             buffer.lastSeen -= oldLength;
