@@ -217,7 +217,7 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
             if (!document[$scope.documentHidden]) {
                 // We just switched back to the glowing-bear window and unread messages may have
                 // accumulated in the active buffer while the window was in the background
-                var buffer = models.getActiveBuffer();
+                var buffer = (models.getActiveBuffer()||{textbuffer:null}).textbuffer;
                 // This can also be triggered before connecting to the relay, check for null (not undefined!)
                 if (buffer !== null) {
                     buffer.unread = 0;
@@ -235,7 +235,8 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
 
 
     $rootScope.$on('activeBufferChanged', function(event, unreadSum) {
-        var ab = models.getActiveBuffer();
+        var iab = models.getActiveBuffer();
+        var ab = iab.textbuffer;
 
         // Discard surplus lines. This is done *before* lines are fetched because that saves us the effort of special handling for the
         // case where a buffer is opened for the first time ;)
@@ -251,11 +252,11 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
         }
 
         $scope.bufferlines = ab.lines;
-        $scope.nicklist = ab.nicklist;
+        $scope.nicklist = iab.nicklist;
 
         // Send a request for the nicklist if it hasn't been loaded yet
-        if (!ab.nicklistRequested()) {
-            connection.requestNicklist(ab.id, function() {
+        if (!iab.nicklistRequested()) {
+            connection.requestNicklist(iab.id, function() {
                 $scope.showNicklist = $scope.updateShowNicklist();
                 // Scroll after nicklist has been loaded, as it may break long lines
                 $rootScope.scrollWithBuffer(true);
@@ -300,7 +301,7 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
                 }
             );
         }
-        notifications.updateTitle(ab);
+        notifications.updateTitle(iab);
         setTimeout(function(){
             $scope.notifications = notifications.unreadCount('notification');
             $scope.unread = notifications.unreadCount('unread');
@@ -323,7 +324,7 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
         }
 
         // Do this part last since it's not important for the UI
-        if (settings.hotlistsync && ab.fullName) {
+        if (settings.hotlistsync && iab.fullName) {
             connection.sendHotlistClear();
         }
     });
@@ -773,7 +774,7 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
             if (buffer.fullName === "core.weechat" || (settings.orderbyserver && buffer.type === 'server')) {
                 return true;
             }
-            return (buffer.unread > 0 || buffer.notification > 0) && !buffer.hidden;
+            return (buffer.textbuffer.unread > 0 || buffer.textbuffer.notification > 0) && !buffer.hidden;
         }
         return !buffer.hidden;
     };
@@ -816,7 +817,7 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
         // Try to find buffer with notification
         for (i in sortedBuffers) {
             buffer = sortedBuffers[i];
-            if (buffer.notification > 0) {
+            if (buffer.textbuffer.notification > 0) {
                 $scope.setActiveBuffer(buffer.id);
                 return;  // return instead of break so that the second for loop isn't executed
             }
@@ -824,7 +825,7 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
         // No notifications, find first buffer with unread lines instead
         for (i in sortedBuffers) {
             buffer = sortedBuffers[i];
-            if (buffer.unread > 0) {
+            if (buffer.textbuffer.unread > 0) {
                 $scope.setActiveBuffer(buffer.id);
                 return;
             }
