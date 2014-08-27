@@ -351,6 +351,7 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
     $scope.nicklist = {};
 
     $scope.activeBuffer = models.getActiveBuffer;
+    $scope.bufferItems = models.getActiveBufferItems.bind(models);
 
     $rootScope.connected = false;
     $rootScope.waseverconnected = false;
