@@ -2109,7 +2109,7 @@ button.close:hover {
 
 /* highlight messages */
 .highlight {
-    color: yellow;
+    /*color: yellow;*/
     font-weight: bold;
 }
 
