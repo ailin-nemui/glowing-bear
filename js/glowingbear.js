@@ -35,7 +35,7 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
         'showtimestampSeconds': false,
         'fontsize': '14px',
         'fontfamily': (utils.isMobileUi() ? 'sans-serif' : 'Inconsolata, Consolas, Monaco, Ubuntu Mono, monospace'),
-        'readlineBindings': false,
+        'readlineBindings': true,
         'enableJSEmoji': (utils.isMobileUi() ? false : true),
         'enableMathjax': false,
     });
