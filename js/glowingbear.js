@@ -351,7 +351,7 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
     // Save setting for font size
     $store.bind($scope, "fontsize", "14px");
     // Save setting for readline keybindings
-    $store.bind($scope, "readlineBindings", false);
+    $store.bind($scope, "readlineBindings", true);
 
     if (!$scope.fontfamily) {
         if (utils.isMobileUi()) {
