@@ -578,7 +578,7 @@ li.buffer.indent.private a {
 
     #bufferlines td.prefix {
         display: inline;
-        padding-right: 5px;
+	padding-right: 5px;
         border: 0;
         font-weight: bold;
         font-size: 15px;
