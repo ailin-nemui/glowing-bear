@@ -1,9 +1,10 @@
 body {
-    background-color: #fdfdfd;
+    background-color: #f7f7f7;
     color: #181818;
 }
-#nicklist, .footer {
-    background-color: #f7f7f7;
+
+#bufferlines {
+    background-color: #fdfdfd;
 }
 
 html {
@@ -23,10 +24,10 @@ html {
 }
 
 tr.bufferline:hover {
-    background-color: #efefef;
+    background-color: #fff;
 }
 
-.danger, .alert-danger, .badge .alert-danger, .badge.danger {
+.danger, .alert-danger, .badge .alert-danger {
     background-color: rgb(217, 83, 79);
     color: #ddd;
 }
@@ -51,7 +52,7 @@ li.notification {
     background-color:rgba(255, 255, 255, 0.5)
 }
 
-select.form-control, select option, input[type=text], input[type=password], #sendMessage, .badge {
+input[type=text], input[type=password], #sendMessage, .badge {
     color: #333;
     box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1), 0px 1px 7px 0px rgba(255, 255, 255, 0.8) inset;
     background: none repeat scroll 0% 0% rgba(255, 255, 255, 0.3);
@@ -124,52 +125,52 @@ select.form-control, select option, input[type=text], input[type=password], #sen
 /****************************/
 /* style options, foreground */
 .cof-separator {
-    color: #345A6A;
+    color: #68b5d4;
 }
 .cof-chat {
-    color: #575757;
+    color: #d9d9d9;
 }
 .cof-chat_time {
-    color: #636363;
+    color: #f7f7f7;
 }
 .cof-chat_time_delimiters {
-    color: #66421E;
+    color: #cc843b;
 }
 .cof-chat_prefix_error {
-    color: #80723C;
+    color: #ffe377;
 }
 .cof-chat_prefix_network {
-    color: #644764;
+    color: #fbb1f9;
 }
 .cof-chat_prefix_action {
-    color: #636363;
+    color: #f7f7f7;
 }
 .cof-chat_prefix_join {
-    color: #525F2A;
+    color: #cdee69;
 }
 .cof-chat_prefix_quit {
-    color: #642B23;
+    color: #c75646;
 }
 .cof-chat_prefix_more {
-    color: #644764;
+    color: #fbb1f9;
 }
 .cof-chat_prefix_suffix {
-    color: #525F2A;
+    color: #cdee69;
 }
 .cof-chat_buffer {
-    color: #4A4A4A;
+    color: #f7f7f7;
 }
 .cof-chat_server {
-    color: #523518;
+    color: #cc843b;
 }
 .cof-chat_channel {
-    color: #636363;
+    color: #f7f7f7;
 }
 .cof-chat_nick {
-    color: #305956;
+    color: #77dfd8;
 }
 .cof-chat_nick_self {
-    color: #4C4C4C;
+    color: #ffffff;
     font-weight: bold;
 }
 .cof-chat_nick_other {
@@ -177,62 +178,62 @@ select.form-control, select option, input[type=text], input[type=password], #sen
 }
 .cof-invalid {
     /* should never happen */
-    color: #4A4A4A;
+    color: #f7f7f7;
     background-color: transparent;
 }
 .cof-chat_host {
-    color: #305956;
+    color: #77dfd8;
 }
 .cof-chat_delimiters {
-    color: #525F2A;
+    color: #cdee69;
 }
 .cof-chat_highlight {
-    color: #665B30;
-    background-color: #504054;
+    color: #ffe377;
+    background-color: #c8a0d1;
 }
 .cof-chat_read_marker {
-    color: #644764;
+    color: #fbb1f9;
 }
 .cof-chat_text_found {
-    color: #665B30;
+    color: #ffe377;
 }
 .cof-chat_value {
-    color: #305956;
+    color: #77dfd8;
 }
 .cof-chat_prefix_buffer {
-    color: #523518;
+    color: #cc843b;
 }
 .cof-chat_tags {
-    color: #50221C;
+    color: #c75646;
 }
 .cof-chat_inactive_window {
-    color: #2E2E2E;
+    color: #5d5d5d;
 }
 .cof-chat_inactive_buffer {
-    color: #2E2E2E;
+    color: #5d5d5d;
 }
 .cof-chat_prefix_buffer_inactive_buffer {
-    color: #2E2E2E;
+    color: #5d5d5d;
 }
 .cof-chat_nick_offline {
-    color: #2E2E2E;
+    color: #5d5d5d;
 }
 .cof-chat_nick_offline_highlight {
-    color: #636363;
+    color: #f7f7f7;
     background-color: #5d5d5d;
 }
 .cof-chat_nick_prefix {
-    color: #525F2A;
+    color: #cdee69;
 }
 .cof-chat_nick_suffix {
-    color: #525F2A;
+    color: #cdee69;
 }
 .cof-emphasis {
-    color: #80723C;
-    background-color: #645068;
+    color: #ffe377;
+    background-color: #c8a0d1;
 }
 .cof-chat_day_change {
-    color: #305956;
+    color: #77dfd8;
 }
 
 /* style options, background */
@@ -385,56 +386,58 @@ select.form-control, select option, input[type=text], input[type=password], #sen
 
 /* WeeChat colors, foreground */
 .cwf-default {
+    color: #d9d9d9;
+}
+.light-theme .cwf-default {
     color: #282828;
 }
-
 .cwf-black {
     color: #000000;
 }
 .cwf-darkgray {
-    color: #2E2E2E;
+    color: #5d5d5d;
 }
 .cwf-red {
-    color: #642B23;
+    color: #c75646;
 }
 .cwf-lightred {
-    color: #704B48;
+    color: #e09690;
 }
 .cwf-green {
-    color: #475A1E;
+    color: #8eb33b;
 }
 .cwf-lightgreen {
-    color: #667734;
+    color: #cdee69;
 }
 .cwf-brown {
-    color: #593919;
+    color: #b27232;
 }
 .cwf-yellow {
-    color: #80723C;
+    color: #ffe377;
 }
 .cwf-blue {
-    color: #395A66;
+    color: #72b3cc;
 }
 .cwf-lightblue {
-    color: #4E6C78;
+    color: #9cd9f0;
 }
 .cwf-magenta {
-    color: #504054;
+    color: #c8a0d1;
 }
 .cwf-lightmagenta {
-    color: #644764;
+    color: #fbb1f9;
 }
 .cwf-cyan {
-    color: #10434A;
+    color: #218693;
 }
 .cwf-lightcyan {
-    color: #182D2B;
+    color: #77dfd8;
 }
 .cwf-gray {
-    color: #464646;
+    color: #b0b0b0;
 }
 .cwf-white {
-    color: #4A4A4A;
+    color: #f7f7f7;
 }
 
 /* WeeChat colors, background */
@@ -445,49 +448,49 @@ select.form-control, select option, input[type=text], input[type=password], #sen
     background-color: #000000;
 }
 .cwb-darkgray {
-    background-color: #2E2E2E;
+    background-color: #5d5d5d;
 }
 .cwb-red {
-    background-color: #642B23;
+    background-color: #c75646;
 }
 .cwb-lightred {
-    background-color: #704B48;
+    background-color: #e09690;
 }
 .cwb-green {
-    background-color: #475A1E;
+    background-color: #8eb33b;
 }
 .cwb-lightgreen {
-    background-color: #667734;
+    background-color: #cdee69;
 }
 .cwb-brown {
-    background-color: #593919;
+    background-color: #b27232;
 }
 .cwb-yellow {
-    background-color: #80723C;
+    background-color: #ffe377;
 }
 .cwb-blue {
-    background-color: #395A66;
+    background-color: #72b3cc;
 }
 .cwb-lightblue {
-    background-color: #4E6C78;
+    background-color: #9cd9f0;
 }
 .cwb-magenta {
-    background-color: #504054;
+    background-color: #c8a0d1;
 }
 .cwb-lightmagenta {
-    background-color: #644764;
+    background-color: #fbb1f9;
 }
 .cwb-cyan {
-    background-color: #10434A;
+    background-color: #218693;
 }
 .cwb-lightcyan {
-    background-color: #182D2B;
+    background-color: #77dfd8;
 }
 .cwb-gray {
-    background-color: #464646;
+    background-color: #b0b0b0;
 }
 .cwb-white {
-    background-color: #4A4A4A;
+    background-color: #f7f7f7;
 }
 
 /* extended colors, foreground */
@@ -495,28 +498,28 @@ select.form-control, select option, input[type=text], input[type=password], #sen
     color: #000000; /* 000 Black */
 }
 .cef-1 {
-    color: #7f0000; /* 001 DarkRed */
+    color: #cd0000; /* 001 DarkRed */
 }
 .cef-2 {
-    color: #009300; /* 002 DarkGreen */
+    color: #00cd00; /* 002 DarkGreen */
 }
 .cef-3 {
-    color: #fc7f00; /* 003 Orange */
+    color: #cdcd00; /* 003 DarkYellow */
 }
 .cef-4 {
     color: #0000ee; /* 004 DarkBlue */
 }
 .cef-5 {
-    color: #8e00cd; /* 005 DarkMagenta */
+    color: #cd00cd; /* 005 DarkMagenta */
 }
 .cef-6 {
-    color: #009393; /* 006 DarkCyan */
+    color: #00cdcd; /* 006 DarkCyan */
 }
 .cef-7 {
-    color: #848484; /* 007 LightGrey */
+    color: #e5e5e5; /* 007 LightGrey */
 }
 .cef-8 {
-    color: #606060; /* 008 DarkGrey */
+    color: #7f7f7f; /* 008 DarkGrey */
 }
 .cef-9 {
     color: #ff0000; /* 009 LightRed */
@@ -525,19 +528,19 @@ select.form-control, select option, input[type=text], input[type=password], #sen
     color: #00ff00; /* 010 LightGreen */
 }
 .cef-11 {
-    color: #d4d420; /* 011 LightYellow*/
+    color: #ffff00; /* 011 LightYellow */
 }
 .cef-12 {
-    color: #4E80ff; /* 012 LightBlue */
+    color: #5c5cff; /* 012 LightBlue */
 }
 .cef-13 {
-    color: #e407e4; /* 013 LightMagenta */
+    color: #ff00ff; /* 013 LightMagenta */
 }
 .cef-14 {
-    color: #18e1e1; /* 014 LightCyan */
+    color: #00ffff; /* 014 LightCyan */
 }
 .cef-15 {
-    color: #4A4A4A; /* 015 White */
+    color: #ffffff; /* 015 White */
 }
 .cef-16 {
     color: #000000; /* 016 Grey0 */
@@ -1265,22 +1268,22 @@ select.form-control, select option, input[type=text], input[type=password], #sen
     background-color: #000000; /* 000 Black */
 }
 .ceb-1 {
-    background-color: #7f0000; /* 001 DarkRed */
+    background-color: #cd0000; /* 001 DarkRed */
 }
 .ceb-2 {
-    background-color: #009300; /* 002 DarkGreen */
+    background-color: #00cd00; /* 002 DarkGreen */
 }
 .ceb-3 {
-    background-color: #fc7f00; /* 003 Orange */
+    background-color: #cdcd00; /* 003 DarkYellow */
 }
 .ceb-4 {
     background-color: #0000ee; /* 004 DarkBlue */
 }
 .ceb-5 {
-    background-color: #8e00cd; /* 005 DarkMagenta */
+    background-color: #cd00cd; /* 005 DarkMagenta */
 }
 .ceb-6 {
-    background-color: #009393; /* 006 DarkCyan */
+    background-color: #00cdcd; /* 006 DarkCyan */
 }
 .ceb-7 {
     background-color: #e5e5e5; /* 007 LightGrey */
@@ -1298,7 +1301,7 @@ select.form-control, select option, input[type=text], input[type=password], #sen
     background-color: #ffff00; /* 011 LightYellow */
 }
 .ceb-12 {
-    background-color: #0080ff; /* 012 LightBlue */
+    background-color: #5c5cff; /* 012 LightBlue */
 }
 .ceb-13 {
     background-color: #ff00ff; /* 013 LightMagenta */
@@ -2057,7 +2060,7 @@ select.form-control, select option, input[type=text], input[type=password], #sen
 
 /* highlight messages */
 .highlight {
-    color: orange;
+    color: yellow;
     font-weight: bold;
 }
 
