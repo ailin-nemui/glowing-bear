@@ -24,7 +24,6 @@
     <script src="//crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
     <script type="text/javascript" src="3rdparty/inflate.min.js"></script>
     <script type="text/javascript" src="js/localstorage.js"></script>
-    <script type="text/javascript" src="js/weechat.js"></script>
     <script type="text/javascript" src="js/teddy.js"></script>
     <script type="text/javascript" src="js/irc-utils.js"></script>
     <script type="text/javascript" src="js/glowingbear.js"></script>
@@ -51,10 +50,10 @@
         <small>{{protocolname}} web frontend</small>
       </h2>
       <div class="alert alert-danger" ng-show="errorMessage">
-        <strong>Connection error</strong> The client was unable to connect to the WeeChat relay
+        <strong>Connection error</strong> The client was unable to connect to the Irssi relay
       </div>
       <div class="alert alert-danger" ng-show="sslError">
-        <strong>Secure connection error</strong> A secure connection with the WeeChat relay could not be initiated. This is most likely because your browser does not trust your relay's certificate. Please read the encryption instructions below!
+        <strong>Secure connection error</strong> A secure connection with the Irssi relay could not be initiated. This is most likely because your browser does not trust your relay's certificate. Please read the encryption instructions below!
       </div>
       <div class="alert alert-danger" ng-show="securityError">
         <strong>Secure connection error</strong> Unable to connect to unencrypted relay when your are connecting to Glowing Bear over HTTPS. Please use an encrypted relay or load the page without using HTTPS.
@@ -72,7 +71,7 @@
             <div class="panel-body">
                <form class="form-signin" role="form">
                 <div class="form-group">
-                  <label class="control-label" for="host">WeeChat relay hostname and port number</label>
+                  <label class="control-label" for="host">Irssi relay hostname and port number</label>
                   <div class="input-group">
                     <div class="row no-gutter">
                       <div class="col-sm-9">
@@ -83,7 +82,7 @@
                       </div>
                     </div>
                   </div>
-                  <label class="control-label" for="password">WeeChat relay password</label>
+                  <label class="control-label" for="password">Irssi relay password</label>
                   <input type="password" class="form-control favorite-font" id="password" ng-model="password" placeholder="Password">
                   <div class="alert alert-danger" ng-show="passwordError">
                     Error: wrong password
@@ -124,13 +123,12 @@
           <div id="collapseTwo" class="panel-collapse collapse in">
             <div class="panel-body">
               <h3>Configuring the relay</h3>
-              <div>To start using glowing bear, please enable the relay plugin in your WeeChat client:
+              <div>To start using glowing bear, please enable the relay plugin in your Irssi client:
 <pre>
-/set relay.network.password yourpassword
-/relay add weechat 9001
+/run teddy-gb
+/set ipw_port 9001
 </pre>
-              <span class="label label-danger">WeeChat version 0.4.2 or higher is required.</span><br>
-              The communication goes directly between your browser and your WeeChat relay in plain text. Check the instructions below for help on setting up encrypted communication.
+              The communication goes directly between your browser and your Irssi relay in plain text. Check the instructions below for help on setting up encrypted communication.
               Connection settings, including your password, are saved locally in your own browser between sessions.
               <br>
               <h3>Shortcuts</h3>
@@ -161,19 +159,9 @@
           </div>
           <div id="collapseThree" class="panel-collapse collapse in">
             <div class="panel-body">
-              <p>If you check the encryption box, the communication between browser and WeeChat will be encrypted with SSL.</p>
+              <p>If you check the encryption box, the communication between browser and Irssi will be encrypted with SSL.</p>
               <p><strong>Note</strong>: If you are using a self-signed certificate, you have to visit <a href="https://{{ host }}:{{ port }}/">https://{{ host || 'weechathost' }}:{{ port || 'relayport' }}/</a> in your browser first to add a security exception. You can close that tab once you confirmed the certificate, no content will appear. The necessity of this process is a bug in <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=594502">Firefox</a> and other browsers.</p>
-              <p><strong>Setup</strong>: If you want to use an encrypted session you first have to set up the relay to use SSL. You basically have two options: a self-signed certificate is easier to set up, but requires manual security exceptions. Using a certificate that is trusted by your browser requires more setup, but does not require any security exceptions. As the process for requesting a certificate is different for every certification authority, we detail the method for setting up WeeChat with a self-signed certificate here. To create one, execute the following commands in a shell on the same host and as the user running WeeChat:</p>
-<pre>
-$ mkdir -p ~/.weechat/ssl
-$ cd ~/.weechat/ssl
-$ openssl req -nodes -newkey rsa:4096 -keyout relay.pem -x509 -days 365 -out relay.pem -subj "/CN={{host || 'your weechat host'}}/"
-</pre>
-              <p>If WeeChat is already running, you can reload the certificate and private key and set up an encrypted relay on port 8000 with these WeeChat commands:</p>
-<pre>
-/relay sslcertkey
-/relay add ssl.weechat 8000
-</pre>
+              <p><strong>Setup</strong>: If you want to use an encrypted session you first have to set up the relay to use SSL. You can do that with: <pre>/toggle ipw_ssl</pre> It might fail if you don't have the necessary Perl modules installed (check the (status) window). You can try using <tt>cpan</tt> or your distribution package manager to install missing Perl modules.</p>
             </div>
           </div>
         </div>
@@ -228,7 +216,7 @@ $ openssl req -nodes -newkey rsa:4096 -keyout relay.pem -x509 -days 365 -out rel
               <i class="glyphicon glyphicon-cog"></i>
             </a>
           </div>
-          <a ng-click="disconnect()" title="Disconnect from WeeChat">
+          <a ng-click="disconnect()" title="">
             <i class="glyphicon glyphicon-off"></i>
           </a>
         </div>
@@ -386,7 +374,7 @@ $ openssl req -nodes -newkey rsa:4096 -keyout relay.pem -x509 -days 365 -out rel
                   <div class="checkbox">
                     <label>
                       <input type="checkbox" ng-model="hotlistsync">
-                      Mark messages as read in WeeChat
+                      Synchronize active buffer with Irssi window
                     </label>
                   </div>
                 </form>
