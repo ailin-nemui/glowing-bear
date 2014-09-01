@@ -19,7 +19,7 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
     $scope.themes = ['dark', 'light'];
 
     settings.setDefaults({
-        'theme': 'dark',
+        'theme': 'light',
         'host': 'localhost',
         'port': 9001,
         'ssl': (window.location.protocol === "https:"),
