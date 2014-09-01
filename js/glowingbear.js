@@ -26,7 +26,7 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
     // Initialise all our settings, this needs to include all settings
     // or else they won't be saved to the localStorage.
     settings.setDefaults({
-        'theme': 'dark',
+        'theme': 'light',
         'host': 'localhost',
         'port': 9001,
         'ssl': (window.location.protocol === "https:"),
