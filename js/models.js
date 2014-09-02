@@ -350,6 +350,11 @@ models.service('models', ['$rootScope', '$filter', function($rootScope, $filter)
         var fromnick = message.fromnick;
         var shortTime = $filter('date')(date, 'HH:mm');
 
+        var strtime;
+        if (message.strtime !== undefined) {
+            strtime = parseRichText(message.strtime);
+        }
+
         var prefix = parseRichText(message.prefix);
         var tags_array = message.tags_array;
         var displayed = message.displayed;
@@ -368,6 +373,7 @@ models.service('models', ['$rootScope', '$filter', function($rootScope, $filter)
         }
 
        return {
+            strtime: strtime,
             prefix: prefix,
             content: content,
             date: date,
