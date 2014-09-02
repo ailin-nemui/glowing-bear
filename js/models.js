@@ -193,11 +193,18 @@ models.service('models', ['$rootScope', '$filter', function($rootScope, $filter)
         var updateNickSpeak = function(line) {
             // Try to find nick from prefix
             var prefix = line.prefix;
+            var nick;
+          if (line.fromnick !== undefined) {
+            nick = line.fromnick;
+            if (nick === false) {
+                return;
+            }
+          } else {
             if (prefix.length === 0) {
                 // some scripts produce lines without a prefix
                 return;
             }
-            var nick = prefix[prefix.length - 1].text;
+            nick = prefix[prefix.length - 1].text;
             // Action / me, find the nick as the first word of the message
             if (nick === " *") {
                 var match = line.text.match(/^(.+)\s/);
@@ -208,6 +215,7 @@ models.service('models', ['$rootScope', '$filter', function($rootScope, $filter)
             else if (nick === "" || nick === "=!=") {
                 return;
             }
+          }
             _.each(nicklist, function(nickGroup) {
                 _.each(nickGroup.nicks, function(nickObj) {
                     if (nickObj.name === nick) {
@@ -362,6 +370,7 @@ models.service('models', ['$rootScope', '$filter', function($rootScope, $filter)
     this.BufferLine = function(message) {
         var buffer = message.buffer;
         var date = message.date;
+        var fromnick = message.fromnick;
         var shortTime = $filter('date')(date, 'HH:mm');
 
         var prefix = parseRichText(message.prefix);
@@ -390,6 +399,7 @@ models.service('models', ['$rootScope', '$filter', function($rootScope, $filter)
             tags: tags_array,
             highlight: highlight,
             displayed: displayed,
+            fromnick: fromnick,
             text: rtext
 
         };

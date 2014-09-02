@@ -173,8 +173,15 @@ weechat.factory('notifications', ['$rootScope', '$log', 'models', 'settings', fu
                 title = 'Highlight in ';
             }
             var prefix = '';
-            for (var i = 0; i < message.prefix.length; i++) {
-                prefix += message.prefix[i].text;
+            if (message.fromnick !== undefined) {
+                prefix = message.fromnick;
+                if (prefix === false) {
+                    return;
+                }
+            } else {
+                for (var i = 0; i < message.prefix.length; i++) {
+                    prefix += message.prefix[i].text;
+                }
             }
             body = '<' + prefix + '> ' + message.text;
         }
