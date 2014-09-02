@@ -10,7 +10,8 @@ html {
 .repeated-time .cob-chat_time,
 .repeated-time .cob-chat_time_delimiters {
     background-color: transparent;
-    color: #333;
+    /*color: #333;*/
+    opacity: 0.4;
 }
 
 /* fix for mobile firefox which ignores :hover */
