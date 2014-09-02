@@ -325,6 +325,11 @@ models.service('models', ['$rootScope', '$filter', function($rootScope, $filter)
             });
         }
 
+        var strtime;
+        if (message.strtime !== undefined) {
+            strtime = protocolModule.mod.rawText2Rich(message.strtime);
+            addClasses(strtime);
+        }
 
         var prefix = weeChat.Protocol.rawText2Rich(message.prefix);
         addClasses(prefix);
@@ -347,6 +352,7 @@ models.service('models', ['$rootScope', '$filter', function($rootScope, $filter)
         }
 
        return {
+            strtime: strtime,
             prefix: prefix,
             content: content,
             date: date,
