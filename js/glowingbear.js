@@ -349,7 +349,7 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
     // Save setting for theme
     $store.bind($scope, "theme", 'light');
     // Save setting for font size
-    $store.bind($scope, "fontsize", "14px");
+    $store.bind($scope, "fontsize", "12pt");
     // Save setting for readline keybindings
     $store.bind($scope, "readlineBindings", true);
 
