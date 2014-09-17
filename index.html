@@ -272,11 +272,13 @@
                 <span ng-repeat="part in ::bufferline.content" class="text" ng-class="::part.classes" ng-style="::part.styles" ng-bind-html="::part.text | irclinky:'_blank' | inlinecolour"></span>
               </td>
             </tr>
+	    <!--
             <tr class="readmarker" ng-if="activeBuffer().lastSeen==$index">
               <td colspan="3">
                 <hr id="readmarker">
               </td>
             </tr>
+	    -->
           </tbody>
         </table>
       </div>
