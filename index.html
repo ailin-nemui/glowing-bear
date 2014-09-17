@@ -266,10 +266,10 @@
                   <span ng-repeat="part in ::bufferline.strtime" class="cof-chat_time cob-chat_time coa-chat_time" ng-class="::part.classes" ng-style="::part.styles" ng-bind-html="::part.text"></span>
                 </span>
               </td>
-              <td class="prefix"><a ng-click="addMention(bufferline)"><span ng-repeat="part in ::bufferline.prefix" ng-class="::part.classes" ng-style="::part.styles" ng-bind="::part.text"></span></a></td>
-              <td class="message">
-                <div ng-repeat="metadata in ::bufferline.metadata" plugin data="::metadata"></div>
-                <span ng-repeat="part in ::bufferline.content" class="text" ng-class="::part.classes" ng-style="::part.styles" ng-bind-html="::part.text | irclinky:'_blank' | inlinecolour"></span>
+              <td class="prefix"><a ng-click="addMention(bufferline)"><span ng-repeat="part in ::bufferline.prefix" ng-class="::part.classes" ng-style="::part.styles" ng-bind="::part.text"></span></a></td><!--
+           --><td class="message"><!--
+             --><div ng-repeat="metadata in ::bufferline.metadata" plugin data="::metadata"></div><!--
+             --><span ng-repeat="part in ::bufferline.content" class="text" ng-class="::part.classes" ng-style="::part.styles" ng-bind-html="::part.text | irclinky:'_blank' | inlinecolour"></span>
               </td>
             </tr>
 	    <!--
