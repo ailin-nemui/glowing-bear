@@ -490,17 +490,43 @@ h2 span, h2 small {
     }
 }
 /* bold hash before channels */
-li.buffer.channel a span:last-of-type:before {
+li.buffer a span:last-of-type:before {
     color: #888;
-    content: "#";
+    /* .glyphicon */
+    position:relative;
+    top:1px;
+    display:inline-block;
+    font-family:'Glyphicons Halflings';
+    font-style:normal;
+    /* font-weight:400; */
+    line-height:1;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    content: "\e104";
     font-weight: bold;
 }
 
-li.buffer.channel.active a span:last-of-type:before {
+li.buffer.server a span:last-of-type:before {
+    left: -5px;
+    margin-right: -10px;
+    opacity: 0.4;
+    content: "\e137";
+}
+li.buffer.channel a span:last-of-type:before {
+    content: "\e111";
+    opacity: 0.4;
+    width: 0;
+    top: 0px; left: -5px;
+}
+li.buffer.private a span:last-of-type:before {
+    content: "\e008";
+}
+
+li.buffer.active a span:last-of-type:before {
     color: #444;
 }
 
-li.buffer.channel.active a:hover span:last-of-type:before {
+li.buffer.active a:hover span:last-of-type:before {
     color: #222;
 }
 
