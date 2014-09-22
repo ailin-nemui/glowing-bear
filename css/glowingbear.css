@@ -538,6 +538,9 @@ li.buffer.indent.private a {
     padding-right: -15px;
 }
 
+a.fetchmorelines {
+    display: block;
+}
 /* */
 /* Mobile layout */
 /* */
@@ -659,4 +662,9 @@ li.buffer.indent.private a {
     .col-sm-9 {
         padding-right: 0px !important;
     }
+
+    tr.fetchmorelines {
+	line-height: 300%;
+    }
+
 }
