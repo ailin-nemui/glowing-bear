@@ -665,6 +665,10 @@ img.emojione {
     }
 }
 
+a.fetchmorelines {
+    display: block;
+}
+
 /* */
 /* Mobile layout */
 /* */
@@ -818,4 +822,9 @@ img.emojione {
 	vertical-align: top;
 	height: 0;
     }
+
+    tr.fetchmorelines {
+	line-height: 300%;
+    }
+
 }

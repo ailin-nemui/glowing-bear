@@ -261,7 +261,7 @@
         </div>
         <table ng-class="{'notimestamp':!settings.showtimestamp,'notimestampseconds':!settings.showtimestampSeconds}">
           <tbody>
-            <tr class="bufferline">
+            <tr class="bufferline fetchmorelines">
               <td ng-hide="activeBuffer().allLinesFetched" colspan="3">
                 <a class="fetchmorelines" ng-click="fetchMoreLines()" ng-hide="loadingLines">Fetch more lines</a>
                 <span ng-show="loadingLines">Fetching more lines...</span>
