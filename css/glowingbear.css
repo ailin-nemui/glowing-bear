@@ -220,6 +220,14 @@ input[type=text], input[type=password], #sendMessage {
     border-radius: 0;
     margin-right: -10px;
     padding: 4px 7px;
+    margin-bottom: -5px !important;
+}
+
+#sidebar .nav-pills > li > a {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #sidebar ul.indented li.indent span.buffername {
@@ -227,11 +235,16 @@ input[type=text], input[type=password], #sendMessage {
 }
 
 #sidebar ul.indented li.indent.not-selected span.buffername {
-    padding-left: 20px;
+/* padding-left: 20px; */
 }
 
 #sidebar ul li.not-selected span.buffername {
-    padding-left: 5px;
+/* padding-left: 5px; */
+}
+
+#sidebar ul.indented li.indent.not-selected span.buffername,
+#sidebar ul li.not-selected span.buffername {
+    opacity: 0.7;
 }
 
 #sidebar.ng-hide {
@@ -614,25 +627,45 @@ h2 span, h2 small {
     }
 }
 /* bold hash before channels */
-li.buffer.channel a span:last-of-type:before, #topbar .title .channel:before {
+li.buffer a span:last-of-type:before, #topbar .title .stylehash:before {
     color: #888;
+    /* .glyphicon */
+    position:relative;
+    top:1px;
+    display:inline-block;
+    font-family:'Glyphicons Halflings';
+    font-style:normal;
+    /* font-weight:400; */
+    line-height:1;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    content: "\e104";
     font-weight: bold;
 }
 
-li.buffer.channel_hash a span:last-of-type:before, #topbar .title .channel_hash:before {
-    content: '#';
+li.buffer.server a span:last-of-type:before, #topbar .title .server:before  {
+    left: -5px;
+    margin-right: -10px;
+    opacity: 0.4;
+    content: "\e137";
+}
+li.buffer.channel a span:last-of-type:before, #topbar .title .channel:before {
+    content: "\e111";
+    opacity: 0.4;
+    width: 0;
+    top: 0px; left: -5px; /* overlay effect */
+}
+li.buffer.private a span:last-of-type:before, #topbar .title .private:before {
+    content: "\e008";
+    margin-left: -5px; /* match channel overlay */
 }
 
-li.buffer.channel_plus a span:last-of-type:before, #topbar .title .channel_plus:before {
-    content: '+';
+li.buffer.active a span:last-of-type:before {
+    color: #444;
 }
 
-li.buffer.channel_ampersand a span:last-of-type:before, #topbar .title .channel_ampersand:before {
-    content: '&';
-}
-
-li.buffer.channel.active a span:last-of-type:before {
-    color: #aaa;
+li.buffer.active a:hover span:last-of-type:before {
+    color: #222;
 }
 
 li.buffer.indent.private a {
@@ -712,7 +745,7 @@ img.emojione {
     }
 
     .nav-pills {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .nav-pills li a {
@@ -882,5 +915,11 @@ img.emojione {
     }
     .col-sm-9 {
         padding-right: 0px !important;
+    }
+
+    li.buffer a span:last-of-type:before {
+	font-size: 180%;
+	vertical-align: top;
+	height: 0;
     }
 }

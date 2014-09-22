@@ -234,7 +234,7 @@
 
         <div class="title" title="{{activeBuffer().rtitle}}">
           <span class="desktop" ng-repeat="part in activeBuffer().title" ng-class="::part.classes" ng-bind-html="::(part.text | linky:'_blank' | DOMfilter:'irclinky')"></span>
-          <span class="mobile" ng-click="showModal('topicModal')" ng-class="{'active': activeBuffer().active, 'channel': activeBuffer().type === 'channel', 'channel_hash': activeBuffer().prefix === '#', 'channel_plus': activeBuffer().prefix === '+', 'channel_ampersand': activeBuffer().prefix === '&'}">{{ activeBuffer().trimmedName || activeBuffer().fullName }}</span>
+          <span class="mobile stylehash" ng-click="showModal('topicModal')" ng-class="{'active': activeBuffer().active, 'channel': activeBuffer().type === 'channel', 'channel_hash': activeBuffer().prefix === '#', 'channel_plus': activeBuffer().prefix === '+', 'channel_ampersand': activeBuffer().prefix === '&', 'private': activeBuffer().type === 'private', 'server': activeBuffer().type === 'server'}">{{ activeBuffer().trimmedName || activeBuffer().fullName }}</span>
         </div>
 
         <div class="actions pull-right vertical-line-left">
@@ -253,11 +253,11 @@
               <input class="form-control favorite-font" type="text" id="bufferFilter" ng-model="search" ng-keydown="handleSearchBoxKey($event)" placeholder="Search" autocomplete="off">
             </form>
           </li>
-          <li class="buffer" ng-class="{'active': buffer.active, 'highlight': search && search_highlight_key === key, 'indent': buffer.indent, 'channel': buffer.type === 'channel', 'channel_hash': buffer.prefix === '#', 'channel_plus': buffer.prefix === '+', 'channel_ampersand': buffer.prefix === '&', 'private': buffer.type === 'private', 'not-selected': !buffer.itemActive}" ng-repeat="(key, buffer) in (filteredBuffers = (getBuffers() | toArray:'withidx' | filter:{shortName:search} | filter:hasUnread | orderBy:predicate | getBufferQuickKeys:this))">
+          <li class="buffer" ng-class="{'active': buffer.active, 'highlight': search && search_highlight_key === key, 'indent': buffer.indent, 'channel': buffer.type === 'channel', 'channel_hash': buffer.prefix === '#', 'channel_plus': buffer.prefix === '+', 'channel_ampersand': buffer.prefix === '&', 'private': buffer.type === 'private', 'server': buffer.type === 'server', 'not-selected': !buffer.itemActive}" ng-repeat="(key, buffer) in (filteredBuffers = (getBuffers() | toArray:'withidx' | filter:{shortName:search} | filter:hasUnread | orderBy:predicate | getBufferQuickKeys:this))">
             <a ng-click="setActiveBuffer(buffer.id)" title="{{ buffer.fullName }}" href="#">
               <span class="badge pull-right" ng-class="{'danger': buffer.textbuffer.notification}" ng-if="buffer.itemActive && (buffer.textbuffer.notification || buffer.textbuffer.unread)" ng-bind="buffer.itemActive && (buffer.textbuffer.notification || buffer.textbuffer.unread)"></span>
               <span class="buffer-quick-key">{{ buffer.$quickKey }}</span>
-              <span class="buffername">{{ buffer.trimmedName || buffer.fullName }}</span>
+              <span class="buffername">{{ buffer.shortName || buffer.fullName }}</span>
             </a>
           </li>
         </ul>
