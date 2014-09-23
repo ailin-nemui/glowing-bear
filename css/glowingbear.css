@@ -667,4 +667,9 @@ a.fetchmorelines {
 	line-height: 300%;
     }
 
+    li.buffer a span:last-of-type:before {
+	font-size: 180%;
+	vertical-align: top;
+	height: 0;
+    }
 }
