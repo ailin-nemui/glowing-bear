@@ -412,24 +412,14 @@ weechat.directive('inputBar', function() {
                         return true;
                     }
                     lines = bufferlines.querySelectorAll("tr");
-                    for (i = lines.length - 1; i >= 0; i--) {
-                        if ((lines[i].offsetTop-bufferlines.scrollTop)<bufferlines.clientHeight/2) {
-                            lines[i].scrollIntoView(false);
-                            break;
-                        }
-                    }
+                    bufferlines.scrollTop -= bufferlines.clientHeight/2;
                     return true;
                 }
 
                 // Page down -> scroll down
                 if ($event.type === "keydown" && code === 34 && document.activeElement === inputNode && !$event.ctrlKey && !$event.altKey && !$event.shiftKey) {
                     lines = bufferlines.querySelectorAll("tr");
-                    for (i = 0; i < lines.length; i++) {
-                        if ((lines[i].offsetTop-bufferlines.scrollTop)>bufferlines.clientHeight/2) {
-                            lines[i].scrollIntoView(true);
-                            break;
-                        }
-                    }
+                    bufferlines.scrollTop += bufferlines.clientHeight/2;
                     return true;
                 }
 
