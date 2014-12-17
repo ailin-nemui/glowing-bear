@@ -86,10 +86,8 @@ weechat.directive('inputBar', function() {
                     _.each($scope.command.split(/\r?\n/), function(line) {
                         // Ask before a /quit
                         if (line === '/quit' || line.indexOf('/quit ') === 0) {
-                            if (!window.confirm("Are you sure you want to quit WeeChat? This will prevent you from connecting with Glowing Bear until you restart WeeChat on the command line!")) {
-                                // skip this line
-                                return;
-                            }
+                            // skip this line
+                            return $scope.$parent.disconnect();
                         }
                         connection.sendMessage(line);
                     });
