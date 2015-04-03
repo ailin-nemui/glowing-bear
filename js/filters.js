@@ -59,6 +59,18 @@ weechat.filter('inlinecolour', function() {
     };
 });
 
+weechat.filter('renderline', function() {
+    return function(text) {
+        if (!text) {
+            return text;
+        }
+
+        // ten or more dashes -> treat as readmarker
+        text = text.replace(/^-{10,}$/, "<hr id='readmarker' />");
+        return text;
+    };
+});
+
 // apply a filter to an HTML string's text nodes, and do so with not exceedingly terrible performance
 weechat.filter('DOMfilter', ['$filter', '$sce', function($filter, $sce) {
     // To prevent nested anchors, we need to know if a filter is going to create them.
