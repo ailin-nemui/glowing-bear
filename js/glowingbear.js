@@ -28,7 +28,7 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
         'nonicklist': utils.isMobileUi(),
         'noembed': true,
         'onlyUnread': false,
-        'hotlistsync': true,
+        'hotlistsync': false,
         'orderbyserver': true,
         'useFavico': true,
         'showtimestamp': true,
@@ -314,8 +314,9 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
 
         // Do this part last since it's not important for the UI
         if (settings.hotlistsync && iab.fullName) {
-            connection.sendHotlistClear();
+            connection.sendCoreCommand('/buffer ' + iab.fullName);
         }
+        connection.sendHotlistClear();
     });
 
     $rootScope.favico = new Favico({animation: 'none'});

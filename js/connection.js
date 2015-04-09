@@ -293,6 +293,10 @@ weechat.factory('connection',
     };
 
     var sendHotlistClear = function() {
+        if (parseInt(models.version.charAt(0)) >= 4) {
+            // Teddy
+            sendCoreCommand('/clearhotlist ' + models.getActiveBuffer().fullName);
+        } else
         if (parseInt(models.version.charAt(0)) >= 1) {
             // WeeChat >= 1 supports clearing hotlist with this command
             sendMessage('/buffer set hotlist -1');
