@@ -569,6 +569,9 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
                     command += " -noswitch";
                 }
             }
+            if (bufferName.match(/\s/) && !bufferName.match(/^".*"$/)) {
+                bufferName = '"' + bufferName + '"';
+            }
             connection.sendMessage('/' + command + ' ' + bufferName);
         }
     };
