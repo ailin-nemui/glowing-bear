@@ -542,6 +542,9 @@ weechat.controller('WeechatCtrl', ['$rootScope', '$scope', '$store', '$timeout',
             if (['#', '&', '+', '!'].indexOf(bufferName.charAt(0)) < 0) {  // these are the characters a channel name can start with (RFC 2813-2813)
                 command = 'query';
             }
+            if (bufferName.match(/\s/) && !bufferName.match(/^".*"$/)) {
+                bufferName = '"' + bufferName + '"';
+            }
             connection.sendMessage('/' + command + ' ' + bufferName);
         }
     };
