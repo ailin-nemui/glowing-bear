@@ -42,6 +42,10 @@ weechat.factory('handlers', ['$rootScope', '$log', 'models', 'plugins', 'notific
 
     // inject a fake buffer line for date change if needed
     var injectDateChangeMessageIfNeeded = function(buffer, manually, old_date, new_date) {
+	if (models.version[0] >= 4) {
+	    // Teddy does not need to fake date change messages
+	    return;
+	}
         if (buffer.bufferType === 1) {
             // Don't add date change messages to free buffers
             return;
